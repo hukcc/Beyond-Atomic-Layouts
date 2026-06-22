@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite the paper."
+title: "Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models"
+type: conference-paper
+authors:
+  - family-names: Huang
+    given-names: Yiyang
+  - family-names: Wang
+    given-names: Zhaowen
+  - family-names: Jenni
+    given-names: Simon
+  - family-names: Shi
+    given-names: Jing
+  - family-names: Zhang
+    given-names: Yitian
+  - family-names: Wang
+    given-names: Yizhou
+  - family-names: Fu
+    given-names: Yun
+conference:
+  name: "European Conference on Computer Vision"
+  abbreviation: ECCV
+year: 2026
+license: MIT

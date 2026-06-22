@@ -1,0 +1,28 @@
+.DS_Store
+Thumbs.db
+
+# Local scratch outputs
+tmp/
+dist/
+build/
+output/
+outputs/
+logs/
+
+# External data and model artifacts
+data/
+datasets/
+checkpoints/
+weights/
+models/
+wandb/
+
+# Python and notebook caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Node tooling, if added later
+node_modules/
+.parcel-cache/
+.vite/

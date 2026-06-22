@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beyond Atomic Layouts</title>
+    <meta
+      name="description"
+      content="Project page for Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models."
+    >
+    <meta property="og:title" content="Beyond Atomic Layouts">
+    <meta
+      property="og:description"
+      content="CoDeLayout and MASON for compositional design understanding with vision-language models."
+    >
+    <meta property="og:image" content="assets/images/teaser.png">
+    <meta name="theme-color" content="#f6f8f7">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <header class="site-header" aria-label="Main navigation">
+      <a class="brand" href="#top">Beyond Atomic Layouts</a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#overview">Overview</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#release">Release</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg" role="img" aria-label="Examples of compositional graphic design layouts"></div>
+        <div class="hero-content">
+          <p class="eyebrow">ECCV 2026</p>
+          <h1 id="hero-title">Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models</h1>
+          <p class="authors">
+            Yiyang Huang, Zhaowen Wang, Simon Jenni, Jing Shi, Yitian Zhang, Yizhou Wang, Yun Fu
+          </p>
+          <p class="affiliations">Northeastern University | Adobe Research</p>
+          <div class="hero-actions" aria-label="Project links">
+            <a class="button primary" href="#release">Paper</a>
+            <a class="button" href="#release">Code</a>
+            <a class="button" href="#release">Dataset</a>
+            <a class="button" href="#citation">BibTeX</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview" class="section intro-section">
+        <div class="section-header">
+          <p class="eyebrow">Overview</p>
+          <h2>Understanding layouts where visual elements interact, overlap, and depend on layers.</h2>
+        </div>
+        <div class="intro-grid">
+          <p>
+            Layout understanding is central to document analysis, UI creation, and graphic design. Existing
+            vision-language models handle many atomic layouts, but compositional designs require reasoning
+            about visually entangled elements and hierarchical layer structure.
+          </p>
+          <p>
+            This project introduces compositional layout understanding, presents CoDeLayout, and evaluates
+            MASON, a post-training paradigm that combines multimodal alignment with structural perception.
+          </p>
+        </div>
+        <div class="metric-strip" aria-label="Key project numbers">
+          <div>
+            <strong>20,009</strong>
+            <span>training samples</span>
+          </div>
+          <div>
+            <strong>387</strong>
+            <span>verified test samples</span>
+          </div>
+          <div>
+            <strong>4</strong>
+            <span>composition types</span>
+          </div>
+          <div>
+            <strong>91.66%</strong>
+            <span>MASON weighted accuracy</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section visual-section" aria-labelledby="types-title">
+        <div class="section-header">
+          <p class="eyebrow">Composition Types</p>
+          <h2 id="types-title">Representative compositional layouts in graphic design.</h2>
+        </div>
+        <div class="type-grid">
+          <article class="type-card">
+            <img src="assets/images/clipping.png" alt="Clipping design example with a foreground cutout layer">
+            <h3>Clipping</h3>
+            <p>Cutout layers allow new elements to be inserted between a base image and a separated foreground.</p>
+          </article>
+          <article class="type-card">
+            <img src="assets/images/blending.png" alt="Blending design example with image crops merged into shapes">
+            <h3>Blending</h3>
+            <p>Image crops are integrated into stylized shapes to create coherent visual composition.</p>
+          </article>
+          <article class="type-card">
+            <img src="assets/images/overlaying.png" alt="Overlaying design example with an element and outline">
+            <h3>Overlaying</h3>
+            <p>Elements are paired with outlines or shadows to emphasize visual hierarchy.</p>
+          </article>
+          <article class="type-card">
+            <img src="assets/images/morphing.png" alt="Morphing design example where text is replaced by graphics">
+            <h3>Morphing</h3>
+            <p>Text and graphics are transformed together to create expressive visual effects.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="dataset" class="section dataset-section">
+        <div class="section-header">
+          <p class="eyebrow">CoDeLayout</p>
+          <h2>A VQA dataset for compositional design layout understanding.</h2>
+        </div>
+        <div class="figure-panel">
+          <img src="assets/images/data-format.png" alt="CoDeLayout data format with rendered image, metadata, and QA annotations">
+        </div>
+        <div class="split-text">
+          <p>
+            Each CoDeLayout instance contains a high-fidelity rendered design image, structured element-level
+            metadata, and QA-style annotations specifying compositional element pairs and their design intent.
+          </p>
+          <p>
+            The dataset follows real-world graphic design distributions across overlaying, clipping, blending,
+            and morphing, with manually verified test samples for reliable evaluation.
+          </p>
+        </div>
+      </section>
+
+      <section id="method" class="section method-section">
+        <div class="section-header">
+          <p class="eyebrow">MASON</p>
+          <h2>Post-training with multimodal alignment and structural perception.</h2>
+        </div>
+        <div class="figure-panel">
+          <img src="assets/images/mason-pipeline.png" alt="MASON pipeline overview">
+        </div>
+        <div class="method-grid">
+          <article>
+            <h3>Multimodal Alignment</h3>
+            <p>
+              MA grounds metadata-defined elements to their visual counterparts, reducing semantic drift under
+              visual entanglement.
+            </p>
+          </article>
+          <article>
+            <h3>Structural Perception</h3>
+            <p>
+              SP augments metadata with layer-aware spatial relationships, improving reasoning about hierarchy
+              and inter-element dependencies.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="results" class="section results-section">
+        <div class="section-header">
+          <p class="eyebrow">Results</p>
+          <h2>MASON improves across composition categories and scales efficiently with data.</h2>
+        </div>
+        <div class="results-layout">
+          <div class="table-wrap" role="region" aria-label="Main CoDeLayout accuracy table" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Overlaying</th>
+                  <th>Clipping</th>
+                  <th>Blending</th>
+                  <th>Morphing</th>
+                  <th>Weighted</th>
+                  <th>Average</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>GPT-o3</td>
+                  <td>93.91</td>
+                  <td>63.64</td>
+                  <td>79.49</td>
+                  <td>68.09</td>
+                  <td>79.68</td>
+                  <td>76.28</td>
+                </tr>
+                <tr>
+                  <td>Direct Finetune</td>
+                  <td>93.04</td>
+                  <td>83.33</td>
+                  <td>94.87</td>
+                  <td>65.96</td>
+                  <td>88.80</td>
+                  <td>84.30</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>MASON, 30% data</td>
+                  <td>92.17</td>
+                  <td>86.36</td>
+                  <td>93.59</td>
+                  <td>72.34</td>
+                  <td>89.32</td>
+                  <td>86.12</td>
+                </tr>
+                <tr class="best-row">
+                  <td>MASON, full data</td>
+                  <td>95.65</td>
+                  <td>90.91</td>
+                  <td>95.51</td>
+                  <td>70.21</td>
+                  <td>91.66</td>
+                  <td>88.07</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <figure class="data-scale">
+            <img src="assets/images/data-scale.png" alt="Data scale ablation comparing MASON with direct finetuning">
+            <figcaption>MASON remains more data-efficient than direct finetuning across training scales.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section assistant-section">
+        <div class="section-header">
+          <p class="eyebrow">Application</p>
+          <h2>Compositional understanding enables coordinated design edits.</h2>
+        </div>
+        <div class="figure-panel large">
+          <img src="assets/images/design-assistant.png" alt="Design assistant editing example for compositional layouts">
+        </div>
+      </section>
+
+      <section id="release" class="section release-section">
+        <div class="section-header">
+          <p class="eyebrow">Release</p>
+          <h2>Code and data are coming soon; the dataset will be released separately.</h2>
+        </div>
+        <div class="release-grid">
+          <article>
+            <span>Paper PDF</span>
+            <strong>Coming soon</strong>
+          </article>
+          <article>
+            <span>Code</span>
+            <strong>Coming soon</strong>
+          </article>
+          <article>
+            <span>Dataset</span>
+            <strong>Coming soon</strong>
+          </article>
+          <article>
+            <span>Model</span>
+            <strong>To be announced</strong>
+          </article>
+        </div>
+      </section>
+
+      <section id="citation" class="section citation-section">
+        <div class="section-header">
+          <p class="eyebrow">Citation</p>
+          <h2>Cite the project.</h2>
+        </div>
+        <div class="citation-box">
+          <button class="copy-button" type="button" data-copy-target="bibtex">Copy</button>
+          <pre id="bibtex"><code>@inproceedings{huang2026beyond,
+  title     = {Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models},
+  author    = {Huang, Yiyang and Wang, Zhaowen and Jenni, Simon and Shi, Jing and Zhang, Yitian and Wang, Yizhou and Fu, Yun},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2026}
+}</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Beyond Atomic Layouts. Project page generated from the ECCV 2026 paper source package.</p>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>
