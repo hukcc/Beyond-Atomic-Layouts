@@ -26,6 +26,7 @@
         <a href="#dataset">Dataset</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
+        <a href="#cases">Cases</a>
         <a href="#release">Release</a>
       </nav>
     </header>
@@ -163,8 +164,12 @@
       <section id="results" class="section results-section">
         <div class="section-header">
           <p class="eyebrow">Results</p>
-          <h2>MASON improves across composition categories and scales efficiently with data.</h2>
+          <h2>MASON improves across composition categories and remains data-efficient.</h2>
         </div>
+        <p class="section-note">
+          The 30% MASON setting uses type-balanced subsampling and fewer total QA pairs, while surpassing
+          full-data Direct Finetune on weighted and average accuracy.
+        </p>
         <div class="results-layout">
           <div class="table-wrap" role="region" aria-label="Main CoDeLayout accuracy table" tabindex="0">
             <table>
@@ -199,7 +204,7 @@
                   <td>84.30</td>
                 </tr>
                 <tr class="highlight-row">
-                  <td>MASON, 30% data</td>
+                  <td>MASON, 30% balanced</td>
                   <td>92.17</td>
                   <td>86.36</td>
                   <td>93.59</td>
@@ -221,18 +226,33 @@
           </div>
           <figure class="data-scale">
             <img src="assets/images/data-scale.png" alt="Data scale ablation comparing MASON with direct finetuning">
-            <figcaption>MASON remains more data-efficient than direct finetuning across training scales.</figcaption>
+            <figcaption>MASON remains more data-efficient than Direct Finetune across training scales.</figcaption>
           </figure>
         </div>
       </section>
 
-      <section class="section assistant-section">
+      <section id="cases" class="section case-section">
         <div class="section-header">
-          <p class="eyebrow">Application</p>
-          <h2>Compositional understanding enables coordinated design edits.</h2>
+          <p class="eyebrow">Case Study</p>
+          <h2>MASON better identifies compositional pairs under subtle spatial and semantic cues.</h2>
         </div>
-        <div class="figure-panel large">
-          <img src="assets/images/design-assistant.png" alt="Design assistant editing example for compositional layouts">
+        <div class="case-grid">
+          <figure class="case-card">
+            <img src="assets/images/case-morphing.png" alt="Morphing case study comparing Direct Finetune and MASON">
+            <figcaption>Morphing</figcaption>
+          </figure>
+          <figure class="case-card">
+            <img src="assets/images/case-blending.png" alt="Blending case study comparing Direct Finetune and MASON">
+            <figcaption>Blending</figcaption>
+          </figure>
+          <figure class="case-card">
+            <img src="assets/images/case-clipping.png" alt="Clipping case study comparing Direct Finetune and MASON">
+            <figcaption>Clipping</figcaption>
+          </figure>
+          <figure class="case-card">
+            <img src="assets/images/case-overlaying.png" alt="Overlaying case study comparing Direct Finetune and MASON">
+            <figcaption>Overlaying</figcaption>
+          </figure>
         </div>
       </section>
 
