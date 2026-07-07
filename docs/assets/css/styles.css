@@ -80,27 +80,33 @@ img {
 
 .hero {
   position: relative;
-  min-height: calc(74vh - 64px);
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
+  padding-bottom: 56px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--page) 100%);
   border-bottom: 1px solid var(--line);
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(246, 248, 247, 0.98) 0%, rgba(246, 248, 247, 0.86) 34%, rgba(246, 248, 247, 0.28) 76%),
-    linear-gradient(180deg, rgba(246, 248, 247, 0.18), rgba(246, 248, 247, 0.82)),
-    url("../images/teaser.png") center right / min(96vw, 1320px) auto no-repeat;
-  transform: scale(1.01);
-  z-index: -1;
 }
 
 .hero-content {
   width: min(1160px, calc(100% - 48px));
   margin: 0 auto;
-  padding: clamp(50px, 8vh, 82px) 0 58px;
+  padding: clamp(50px, 8vh, 82px) 0 28px;
+}
+
+.hero-figure {
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto;
+  overflow: visible;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.hero-figure img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .eyebrow {
@@ -282,14 +288,14 @@ p {
 }
 
 .type-card {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .type-card img {
   width: 100%;
   aspect-ratio: 1.34;
-  object-fit: cover;
-  background: #e5ebe8;
+  object-fit: contain;
+  background: #ffffff;
 }
 
 .type-card h3 {
@@ -305,7 +311,7 @@ p {
 }
 
 .figure-panel {
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #ffffff;
@@ -418,7 +424,7 @@ figcaption {
 }
 
 .case-card {
-  overflow: hidden;
+  overflow: visible;
   margin: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -526,16 +532,11 @@ pre {
   }
 
   .hero {
-    min-height: calc(78vh - 84px);
-  }
-
-  .hero-bg {
-    background:
-      linear-gradient(180deg, rgba(246, 248, 247, 0.96) 0%, rgba(246, 248, 247, 0.82) 50%, rgba(246, 248, 247, 0.42) 100%),
-      url("../images/teaser.png") center bottom / 140vw auto no-repeat;
+    padding-bottom: 42px;
   }
 
   .hero-content,
+  .hero-figure,
   .section {
     width: min(100% - 36px, 1160px);
   }
@@ -571,7 +572,7 @@ pre {
 
   .hero-content {
     padding-top: 52px;
-    padding-bottom: 70px;
+    padding-bottom: 22px;
   }
 
   h1 {
@@ -603,10 +604,6 @@ pre {
 
   .case-grid {
     grid-template-columns: 1fr;
-  }
-
-  .type-card img {
-    aspect-ratio: 1.72;
   }
 
   .figure-panel,
