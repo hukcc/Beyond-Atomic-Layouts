@@ -18,7 +18,8 @@ The paper introduces compositional layout understanding, a VQA task for identify
 
 - Code: coming soon.
 - Data: coming soon through a separate company-hosted release.
-- Paper PDF: coming soon.
+- Paper PDF: available at `docs/assets/paper/beyond-atomic-layouts.pdf`.
+- Supplementary PDF: available at `docs/assets/paper/beyond-atomic-layouts-supplementary.pdf`.
 - Model: to be announced.
 
 ## Project Page
@@ -30,7 +31,7 @@ To publish with GitHub Pages:
 1. Push this repository to GitHub.
 2. Open the repository settings.
 3. Enable GitHub Pages from the `main` branch and `/docs` folder.
-4. Update release links in `docs/index.html` when public URLs are available.
+4. Update code and dataset release links in `docs/index.html` when public URLs are available.
 
 ## Citation
 
