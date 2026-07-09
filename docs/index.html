@@ -6,12 +6,12 @@
     <title>Beyond Atomic Layouts</title>
     <meta
       name="description"
-      content="Project page for Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models."
+      content="Layout understanding, or the interpretation of element organization, is essential for document analysis, user interface (UI) creation, and graphic design."
     >
     <meta property="og:title" content="Beyond Atomic Layouts">
     <meta
       property="og:description"
-      content="CoDeLayout and MASON for compositional design understanding with vision-language models."
+      content="CoDeLayout is a VQA dataset of approximately 20K real-world multi-layer layouts annotated with compositional element pairs and design intent."
     >
     <meta property="og:image" content="assets/images/teaser.png">
     <meta name="theme-color" content="#f6f8f7">
@@ -22,8 +22,8 @@
     <header class="site-header" aria-label="Main navigation">
       <a class="brand" href="#top">Beyond Atomic Layouts</a>
       <nav class="nav-links" aria-label="Sections">
-        <a href="#overview">Overview</a>
         <a href="#dataset">Dataset</a>
+        <a href="#analysis">Analysis</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
         <a href="#cases">Cases</a>
@@ -41,13 +41,16 @@
           </p>
           <p class="affiliations">Northeastern University | Adobe Research</p>
           <p class="hero-summary">
-            A benchmark, training strategy, and evaluation suite for reasoning about layered and entangled
-            graphic design layouts beyond isolated visual elements.
+            Layout understanding, or the interpretation of element organization, is essential for document
+            analysis, user interface (UI) creation, and graphic design. While recent vision-language models
+            (VLMs) excel at interpreting atomic layouts composed of independent elements, they struggle with
+            compositional layouts that require reasoning over visually entangled elements within hierarchical
+            multi-layer structures.
           </p>
           <div class="hero-tags" aria-label="Project highlights">
-            <span>CoDeLayout benchmark</span>
-            <span>Layer-aware reasoning</span>
-            <span>MASON post-training</span>
+            <span>Compositional layout understanding</span>
+            <span>CoDeLayout</span>
+            <span>MASON</span>
           </div>
           <div class="hero-actions" aria-label="Project links">
             <a class="button primary" href="assets/paper/beyond-atomic-layouts.pdf">Paper</a>
@@ -58,81 +61,153 @@
           </div>
         </div>
         <figure class="hero-figure">
-          <img src="assets/images/teaser.png" alt="Design assistant workflow for compositional layout understanding">
-          <figcaption>Compositional layout understanding links rendered designs, element metadata, and layer-aware reasoning.</figcaption>
+          <img src="assets/images/teaser.png" alt="Compositional layout understanding for design assistants">
+          <figcaption>
+            Compositional layout understanding is critical for design assistants, as handling such layouts often
+            requires coordinated edits across interrelated elements to faithfully implement user intent.
+          </figcaption>
         </figure>
-      </section>
-
-      <section id="overview" class="section intro-section">
-        <div class="section-header">
-          <p class="eyebrow">Overview</p>
-          <h2>Understanding layouts where visual elements interact, overlap, and depend on layers.</h2>
-        </div>
-        <div class="intro-grid">
-          <p>
-            Layout understanding is central to document analysis, UI creation, and graphic design. Existing
-            vision-language models handle many atomic layouts, but compositional designs require reasoning
-            about visually entangled elements and hierarchical layer structure.
-          </p>
-          <p>
-            This project introduces compositional layout understanding, presents CoDeLayout, and evaluates
-            MASON, a post-training paradigm that combines multimodal alignment with structural perception.
-          </p>
-        </div>
-        <div class="metric-strip" aria-label="Key project numbers">
-          <div>
-            <strong>20,009</strong>
-            <span>training samples</span>
-          </div>
-          <div>
-            <strong>387</strong>
-            <span>verified test samples</span>
-          </div>
-          <div>
-            <strong>4</strong>
-            <span>composition types</span>
-          </div>
-          <div>
-            <strong>91.66%</strong>
-            <span>MASON weighted accuracy</span>
-          </div>
+        <div class="hero-task-grid" aria-label="Task introduction">
+          <article>
+            <span>Task</span>
+            <h2>Compositional layout understanding aims to identify interacting elements within hierarchical layouts and interpret their design intent.</h2>
+            <p>
+              Each layout instance is represented by the rendered design image and the complete metadata of the
+              design. The model is required to identify the corresponding compositional element and generate a
+              textual answer explaining their design intent.
+            </p>
+          </article>
+          <article>
+            <span>Motivation</span>
+            <h2>Compositional designs involve visual entanglement among multiple elements within hierarchical structures.</h2>
+            <p>
+              Understanding compositional layouts is essential for enabling design assistants to perform editing
+              operations correctly.
+            </p>
+          </article>
         </div>
       </section>
 
       <section id="dataset" class="section dataset-section">
         <div class="section-header">
           <p class="eyebrow">CoDeLayout</p>
-          <h2>A VQA dataset for compositional design layout understanding.</h2>
+          <h2>To support compositional layout understanding in graphic design, we construct the Compositional Design Layout Dataset.</h2>
         </div>
         <div class="figure-panel">
-          <img src="assets/images/data-format.png" alt="CoDeLayout data format with rendered image, metadata, and QA annotations">
+          <img src="assets/images/data-format.png" alt="Data format of a compositional design">
         </div>
         <div class="split-text">
           <p>
-            Each CoDeLayout instance contains a high-fidelity rendered design image, structured element-level
-            metadata, and QA-style annotations specifying compositional element pairs and their design intent.
+            CoDeLayout contains approximately 20K design instances spanning diverse resolutions and coherent
+            multi-layer structures across four representative compositional types: Overlaying, Clipping, Blending,
+            and Morphing.
           </p>
           <p>
-            The dataset follows real-world graphic design distributions across overlaying, clipping, blending,
-            and morphing, with manually verified test samples for reliable evaluation.
+            Each instance includes: (1) a high-fidelity rendered design image; (2) a structured JSON file with
+            element-level metadata (id, type, opacity, zIndex, position, etc.); and (3) QA-style annotations
+            specifying compositional element pairs and their associated design intents.
+          </p>
+          <p>
+            CoDeLayout follows the natural distribution of real-world graphic designs without resampling for
+            category balancing. It contains 20,009 training samples and 387 test samples. All test samples are
+            manually verified to ensure annotation correctness and prevent data leakage.
           </p>
         </div>
-        <div class="dataset-gallery" aria-label="Additional CoDeLayout samples">
+        <div class="dataset-subsection">
+          <h3>Composition Categories</h3>
+          <p>
+            Figure 1 illustrates representative composition types, including clipping for inter-layer insertion,
+            blending image crops into stylized shapes, overlaying an element with its outline, and morphing text
+            for visual effects.
+          </p>
+        </div>
+        <div class="dataset-category-grid" aria-label="CoDeLayout composition categories">
+          <figure class="dataset-category-card">
+            <img src="assets/images/overlaying.png" alt="Overlaying: element plus outline or shadow">
+            <figcaption>
+              <strong>Overlaying</strong>
+              <span>Overlaying combines an element with its outline or shadow to emphasize visual hierarchy.</span>
+            </figcaption>
+          </figure>
+          <figure class="dataset-category-card">
+            <img src="assets/images/clipping.png" alt="Clipping: cutout layer for insertion">
+            <figcaption>
+              <strong>Clipping</strong>
+              <span>Clipping extracts a region from a base image as a separate layer, allowing insertion of new elements between the base and the cutout.</span>
+            </figcaption>
+          </figure>
+          <figure class="dataset-category-card">
+            <img src="assets/images/blending.png" alt="Blending: merged image crops">
+            <figcaption>
+              <strong>Blending</strong>
+              <span>Blending integrates different crops of the same image into stylized shapes for aesthetic coherence.</span>
+            </figcaption>
+          </figure>
+          <figure class="dataset-category-card">
+            <img src="assets/images/morphing.png" alt="Morphing: text replaced by graphics">
+            <figcaption>
+              <strong>Morphing</strong>
+              <span>Morphing replaces text with graphics to create expressive visual effects.</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="dataset-subsection dataset-subsection-compact">
+          <h3>Representative Compositional Layouts</h3>
+          <p>CoDeLayout spans diverse resolutions and coherent multi-layer structures across four representative compositional types.</p>
+        </div>
+        <div class="dataset-gallery" aria-label="Representative compositional layouts">
           <figure class="dataset-sample">
-            <img src="assets/images/dataset-samples/overlaying-examples.png" alt="Additional overlaying samples from CoDeLayout">
-            <figcaption>Additional overlaying samples</figcaption>
+            <img src="assets/images/dataset-samples/overlaying-examples.png" alt="Overlaying: element plus outline or shadow">
+            <figcaption>Overlaying: element + outline/shadow</figcaption>
           </figure>
           <figure class="dataset-sample">
-            <img src="assets/images/dataset-samples/clipping-examples.png" alt="Additional clipping samples from CoDeLayout">
-            <figcaption>Additional clipping samples</figcaption>
+            <img src="assets/images/dataset-samples/clipping-examples.png" alt="Clipping: cutout layer for insertion">
+            <figcaption>Clipping: cutout layer for insertion</figcaption>
           </figure>
           <figure class="dataset-sample">
-            <img src="assets/images/dataset-samples/blending-examples.png" alt="Additional blending samples from CoDeLayout">
-            <figcaption>Additional blending samples</figcaption>
+            <img src="assets/images/dataset-samples/blending-examples.png" alt="Blending: merged image crops">
+            <figcaption>Blending: merged image crops</figcaption>
           </figure>
           <figure class="dataset-sample">
-            <img src="assets/images/dataset-samples/morphing-examples.png" alt="Additional morphing samples from CoDeLayout">
-            <figcaption>Additional morphing samples</figcaption>
+            <img src="assets/images/dataset-samples/morphing-examples.png" alt="Morphing: text replaced by graphics">
+            <figcaption>Morphing: text replaced by graphics</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="analysis" class="section problem-section">
+        <div class="section-header">
+          <p class="eyebrow">Problem Analysis</p>
+          <h2>Compositional layouts introduce structural complexity beyond atomic layouts.</h2>
+        </div>
+        <div class="analysis-figure-grid" aria-label="Problem analysis evidence">
+          <figure class="analysis-figure-card">
+            <img
+              src="assets/images/problem-analysis/semantic-drift.png"
+              alt="Grounding performance versus compositional element identification accuracy"
+            >
+            <figcaption>
+              <strong>Semantic Drift</strong>
+              <span>
+                Semantic drift arises from the visual entanglement of elements, as VLMs fail to align textual
+                metadata with visual content, resulting in misinterpretation of element semantics and degraded
+                compositional understanding.
+              </span>
+            </figcaption>
+          </figure>
+          <figure class="analysis-figure-card">
+            <img
+              src="assets/images/problem-analysis/structural-ambiguity.png"
+              alt="Spatial relation perception accuracy versus compositional element identification accuracy"
+            >
+            <figcaption>
+              <strong>Structural Ambiguity</strong>
+              <span>
+                Structural ambiguity arises from the hierarchical organization of compositional elements, where
+                VLMs struggle to interpret layer-aware spatial structures, limiting their ability to model
+                inter-element relationships.
+              </span>
+            </figcaption>
           </figure>
         </div>
       </section>
@@ -140,26 +215,27 @@
       <section id="method" class="section method-section">
         <div class="section-header">
           <p class="eyebrow">MASON</p>
-          <h2>Post-training with multimodal alignment and structural perception.</h2>
+          <h2>MASON mitigates semantic drift and structural ambiguity through multimodal alignment and structural perception.</h2>
         </div>
         <div class="figure-panel">
-          <img src="assets/images/mason-pipeline.png" alt="MASON pipeline overview">
+          <img src="assets/images/mason-pipeline.png" alt="Overview of MASON">
         </div>
         <div class="method-grid">
           <article>
-            <span class="method-label">Stage 1</span>
+            <span class="method-label">MA</span>
             <h3>Multimodal Alignment</h3>
             <p>
-              MA grounds metadata-defined elements to their visual counterparts, reducing semantic drift under
-              visual entanglement.
+              To address semantic drift, MA introduces an element grounding objective during VLM post-training,
+              encouraging alignment between textual metadata and corresponding visual content under visual
+              entanglement.
             </p>
           </article>
           <article>
-            <span class="method-label">Stage 2</span>
+            <span class="method-label">SP</span>
             <h3>Structural Perception</h3>
             <p>
-              SP augments metadata with layer-aware spatial relationships, improving reasoning about hierarchy
-              and inter-element dependencies.
+              To address structural ambiguity, SP incorporates layer-aware spatial relationships into VLM
+              post-training, enabling accurate modeling of hierarchical inter-element relationships.
             </p>
           </article>
         </div>
@@ -168,11 +244,12 @@
       <section id="results" class="section results-section">
         <div class="section-header">
           <p class="eyebrow">Results</p>
-          <h2>Complete CoDeLayout results across baselines, VLMs, and MASON variants.</h2>
+          <h2>Performance on CoDeLayout across four compositional categories.</h2>
         </div>
         <p class="section-note">
-          Each category cell reports accuracy with GPT-Score/BLEU/ROUGE in parentheses. Weighted accuracy
-          accounts for category proportions; average accuracy is the unweighted mean across four categories.
+          Each cell reports Accuracy (GPT-Score/BLEU/ROUGE). Accuracy evaluates compositional element
+          identification, while GPT-Score/BLEU/ROUGE measure explanation quality. Weighted Accuracy is computed
+          using test sample proportions, and Average Accuracy is the unweighted mean across categories.
         </p>
         <div class="table-wrap main-results-wrap" role="region" aria-label="Complete CoDeLayout results table" tabindex="0">
           <table class="results-table detailed-results">
@@ -331,28 +408,36 @@
         </div>
         <div class="results-support">
           <figure class="data-scale">
-            <img src="assets/images/data-scale.png" alt="Data scale ablation comparing MASON with direct finetuning">
-            <figcaption>MASON remains more data-efficient than Direct Finetune across training scales.</figcaption>
+            <img src="assets/images/data-scale.png" alt="Data Scale Ablation">
+            <figcaption>
+              Performance of Direct Finetune and MASON trained on 10%, 15%, 30%, and 100% of the CoDeLayout
+              training set. MASON consistently outperforms across all scales, with a clear advantage under
+              low-resource settings.
+            </figcaption>
           </figure>
           <div class="result-highlights" aria-label="Key result highlights">
             <article>
               <span>+11.98</span>
-              <p>MASON full data improves weighted accuracy over GPT-o3.</p>
+              <p>MASON (Full data) improves weighted accuracy from 79.68% to 91.66% and average accuracy from 76.28% to 88.07%.</p>
             </article>
             <article>
               <span>30%</span>
-              <p>MASON surpasses full-data Direct Finetune with type-balanced subsampling.</p>
+              <p>MASON also shows strong data efficiency by achieving 89.32% weighted and 86.12% average accuracy, surpassing Direct Finetune trained on the full dataset.</p>
             </article>
             <article>
               <span>90.91</span>
-              <p>MASON reaches the strongest clipping accuracy, where layer reasoning is critical.</p>
+              <p>Compared with GPT-o3, MASON (Full data) shows especially large gains on structurally complex categories such as Clipping (90.91% vs. 63.64%).</p>
             </article>
           </div>
         </div>
         <div class="results-extra-grid">
           <article class="result-card">
             <h3>Module Ablation</h3>
-            <p>DF denotes Direct Finetune, MA denotes Multimodal Alignment, and SP denotes Structural Perception.</p>
+            <p>
+              DF denotes Direct Finetune, MA denotes Multimodal Alignment, and SP denotes Structural Perception.
+              Results show that MA and SP provide complementary improvements, with their combination achieving
+              the strongest overall performance.
+            </p>
             <div class="mini-table-wrap" role="region" aria-label="Module ablation table" tabindex="0">
               <table class="mini-results-table">
                 <thead>
@@ -407,94 +492,29 @@
               </table>
             </div>
           </article>
-          <article class="result-card">
-            <h3>Grounding Model Ablation</h3>
-            <p>Comparable performance across grounding models indicates that the gains come from the alignment paradigm.</p>
-            <div class="mini-table-wrap" role="region" aria-label="Grounding model ablation table" tabindex="0">
-              <table class="mini-results-table compact">
-                <thead>
-                  <tr>
-                    <th>Grounding VLM</th>
-                    <th>Weighted</th>
-                    <th>Average</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>GPT-4o</td>
-                    <td>91.6%</td>
-                    <td>88.1%</td>
-                  </tr>
-                  <tr>
-                    <td>Qwen3-VL (direct)</td>
-                    <td>90.7%</td>
-                    <td>87.4%</td>
-                  </tr>
-                  <tr>
-                    <td>Qwen3-VL (script)</td>
-                    <td>91.1%</td>
-                    <td>88.1%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </article>
-          <article class="result-card">
-            <h3>Visual Dependency Ablation</h3>
-            <p>Removing visual features produces a substantial drop, showing that metadata alone is insufficient.</p>
-            <div class="mini-table-wrap" role="region" aria-label="Visual dependency ablation table" tabindex="0">
-              <table class="mini-results-table compact">
-                <thead>
-                  <tr>
-                    <th>Model</th>
-                    <th>Weighted Visual</th>
-                    <th>Weighted No Visual</th>
-                    <th>Average Visual</th>
-                    <th>Average No Visual</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>DF</td>
-                    <td>88.8%</td>
-                    <td>60.9%</td>
-                    <td>84.3%</td>
-                    <td>58.1%</td>
-                  </tr>
-                  <tr class="best-row">
-                    <td>MASON</td>
-                    <td>91.6%</td>
-                    <td>65.1%</td>
-                    <td>88.0%</td>
-                    <td>62.8%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </article>
         </div>
       </section>
 
       <section id="cases" class="section case-section">
         <div class="section-header">
           <p class="eyebrow">Case Study</p>
-          <h2>MASON better identifies compositional pairs under subtle spatial and semantic cues.</h2>
+          <h2>DF often struggles to localize and associate the correct compositional elements when spatial or semantic cues are subtle, whereas MASON successfully identifies the underlying compositional pairs.</h2>
         </div>
         <div class="case-grid">
           <figure class="case-card">
-            <img src="assets/images/case-morphing.png" alt="Morphing case study comparing Direct Finetune and MASON">
+            <img src="assets/images/case-morphing.png" alt="Morphing">
             <figcaption>Morphing</figcaption>
           </figure>
           <figure class="case-card">
-            <img src="assets/images/case-blending.png" alt="Blending case study comparing Direct Finetune and MASON">
+            <img src="assets/images/case-blending.png" alt="Blending">
             <figcaption>Blending</figcaption>
           </figure>
           <figure class="case-card">
-            <img src="assets/images/case-clipping.png" alt="Clipping case study comparing Direct Finetune and MASON">
+            <img src="assets/images/case-clipping.png" alt="Clipping">
             <figcaption>Clipping</figcaption>
           </figure>
           <figure class="case-card">
-            <img src="assets/images/case-overlaying.png" alt="Overlaying case study comparing Direct Finetune and MASON">
+            <img src="assets/images/case-overlaying.png" alt="Overlaying">
             <figcaption>Overlaying</figcaption>
           </figure>
         </div>
@@ -503,7 +523,7 @@
       <section id="release" class="section release-section">
         <div class="section-header">
           <p class="eyebrow">Release</p>
-          <h2>Paper and supplementary material are available; code and data are coming soon.</h2>
+          <h2>Release Status</h2>
         </div>
         <div class="release-grid">
           <article>
@@ -532,7 +552,7 @@
       <section id="citation" class="section citation-section">
         <div class="section-header">
           <p class="eyebrow">Citation</p>
-          <h2>Cite the project.</h2>
+          <h2>Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models</h2>
         </div>
         <div class="citation-box">
           <button class="copy-button" type="button" data-copy-target="bibtex">Copy</button>
@@ -547,7 +567,7 @@
     </main>
 
     <footer class="site-footer">
-      <p>Beyond Atomic Layouts. Project page generated from the ECCV 2026 paper source package.</p>
+      <p>Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models</p>
     </footer>
 
     <script src="assets/js/site.js"></script>

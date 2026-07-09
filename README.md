@@ -8,7 +8,7 @@ Yiyang Huang, Zhaowen Wang, Simon Jenni, Jing Shi, Yitian Zhang, Yizhou Wang, Yu
 
 Northeastern University and Adobe Research
 
-## Overview
+## Repository Scope
 
 This repository hosts the project page for the ECCV 2026 paper. Code and data are coming soon.
 
