@@ -20,6 +20,7 @@ The paper introduces compositional layout understanding, a VQA task for identify
 - Data: coming soon through Adobe's official GitHub organization after sanitization and internal release review.
 - Paper PDF: available at `docs/assets/paper/beyond-atomic-layouts.pdf`.
 - Supplementary PDF: available at `docs/assets/paper/beyond-atomic-layouts-supplementary.pdf`.
+- Presentation video: [YouTube](https://www.youtube.com/watch?v=GiBnGmhc4oc).
 - Model: coming soon through Adobe's official GitHub organization after sanitization and internal release review.
 
 ## Project Page
