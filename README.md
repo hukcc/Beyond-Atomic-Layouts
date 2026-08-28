@@ -10,7 +10,7 @@ Northeastern University and Adobe Research
 
 ## Repository Scope
 
-This repository hosts the project page and paper materials for the ECCV 2026 paper. Code and data are coming soon.
+This repository hosts the project page and paper materials for the ECCV 2026 paper. Code, data, and model are coming soon.
 
 The paper introduces compositional layout understanding, a VQA task for identifying interacting elements in hierarchical multi-layer layouts and explaining their design intent.
 
@@ -18,6 +18,7 @@ The paper introduces compositional layout understanding, a VQA task for identify
 
 - Code: coming soon through Adobe's official GitHub organization after sanitization and internal release review.
 - Data: coming soon through Adobe's official GitHub organization after sanitization and internal release review.
+- arXiv: [2608.26716](https://arxiv.org/abs/2608.26716).
 - Paper PDF: available at `docs/assets/paper/beyond-atomic-layouts.pdf`.
 - Supplementary PDF: available at `docs/assets/paper/beyond-atomic-layouts-supplementary.pdf`.
 - Presentation video: [YouTube](https://www.youtube.com/watch?v=GiBnGmhc4oc).
@@ -41,6 +42,9 @@ To publish with GitHub Pages:
   title     = {Beyond Atomic Layouts: Compositional Design Understanding with Vision-Language Models},
   author    = {Huang, Yiyang and Wang, Zhaowen and Jenni, Simon and Shi, Jing and Zhang, Yitian and Wang, Yizhou and Fu, Yun},
   booktitle = {European Conference on Computer Vision (ECCV)},
+  eprint    = {2608.26716},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
   year      = {2026}
 }
 ```
